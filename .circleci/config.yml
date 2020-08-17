@@ -141,7 +141,7 @@ jobs:
   notify-via-slack:
     executor: slack-executor
     steps:
-      - stack/notify:
+      - slack/notify:
           message: "${CIRCLE_BRANCH} branch deployment to aws s3 and cloudfront is complete."
           webook: $CIRCLECI_SLACK_WEBHOOK
       - slack/status:
