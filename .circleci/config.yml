@@ -143,7 +143,7 @@ jobs:
     steps:
       - slack/notify:
           message: "${CIRCLE_BRANCH} branch deployment to aws s3 and cloudfront is complete."
-          webook: $CIRCLECI_SLACK_WEBHOOK
+          webhook: $CIRCLECI_SLACK_WEBHOOK
       - slack/status:
           webhook: $CIRCLECI_SLACK_WEBHOOK
 ###
