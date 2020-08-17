@@ -28,7 +28,7 @@ executors:
     working_directory: ~/repo
   slack-executor:
     docker:
-      - image: 'cubuilds/base:latest'
+      - image: 'cibuilds/base:latest'
     resource_class: small
 
 aliases:
