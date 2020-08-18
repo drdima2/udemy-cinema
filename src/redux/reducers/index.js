@@ -8,4 +8,4 @@ const rootReducers = combineReducers({
   movies: movieReducer
 });
 
-export default rootReducers
+export default rootReducers;

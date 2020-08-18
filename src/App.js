@@ -11,7 +11,6 @@ const App = () => {
         <h1>Setup React Redux</h1>
       </div>
     </Provider>
-
   );
 };
 
