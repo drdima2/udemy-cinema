@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import './Header.scss';
-import logo from '../../assets/cinema-logo.svg'
+import logo from '../../assets/cinema-logo.svg';
 
 const HEADER_LIST = [
   {
@@ -52,38 +52,26 @@ const Header = () => {
         <div className="header-bar"></div>
         <div className="header-navbar">
           <div className="header-image">
-            <img src={logo} alt=""/>
+            <img src={logo} alt="" />
           </div>
-          <div
-            className={`${menuClass ? 'header-menu-toggle is-active' : 'header-menu-toggle'}`}
-            id="header-mobile-menu"
-            onClick={() => toggleMenu()}
-          >
+          <div className={`${menuClass ? 'header-menu-toggle is-active' : 'header-menu-toggle'}`} id="header-mobile-menu" onClick={() => toggleMenu()}>
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
           </div>
           <ul className={`${navClass ? 'header-nav header-mobile-nav' : 'header-nav'}`}>
-            {
-              HEADER_LIST.map((data) =>
-                <li
-                  key={data.id}
-                  className="header-nav-item">
-                    <span className="header-list-name">
-                      <i className={data.iconClass}></i>
-                    </span>
-                  &nbsp;
-                  <span className="header-list-name">{data.name}</span>
-                </li>
-              )
-            }
+            {HEADER_LIST.map((data) => (
+              <li key={data.id} className="header-nav-item">
+                <span className="header-list-name">
+                  <i className={data.iconClass}></i>
+                </span>
+                &nbsp;
+                <span className="header-list-name">{data.name}</span>
+              </li>
+            ))}
 
             <li className="header-nav-item">New Movies</li>
-            <input
-              className="search-input"
-              type="text"
-              placeholder="Search for a movie"
-            />
+            <input className="search-input" type="text" placeholder="Search for a movie" />
           </ul>
         </div>
       </div>
@@ -92,5 +80,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
