@@ -1,3 +1,11 @@
+
+
+!!! PROJECT FROM COURSE !!!
+udemy3300\[3329] - [Frontend] - udemy - [2020-05] - Build a Modern React and Redux App with CircleCI CI_CD & AWS\
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
