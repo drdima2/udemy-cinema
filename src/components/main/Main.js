@@ -24,7 +24,7 @@ const Main = (props) => {
   useEffect(() => {
     setResponsePageNumber(currentPage, totalPages);
     // loadMoreMovies('now_playing', currentPage);
-  }, [currentPage, totalPages]);
+  }, [currentPage, totalPages, setResponsePageNumber]);
 
   const fetchData = () => {
     let pageNumber = currentPage;
