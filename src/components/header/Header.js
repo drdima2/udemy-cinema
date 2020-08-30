@@ -5,7 +5,13 @@ import './Header.scss';
 import logo from '../../assets/cinema-logo.svg';
 // import { MOVIE_API_URL } from '../../services/movies.service';
 import { connect } from 'react-redux';
-import { getMovies, setMovieType, setResponsePageNumber, searchQuery, searchResult } from '../../redux/actions/movies';
+import {
+  getMovies,
+  setMovieType,
+  setResponsePageNumber,
+  searchQuery,
+  searchResult
+} from '../../redux/actions/movies';
 
 const HEADER_LIST = [
   {
@@ -35,7 +41,15 @@ const HEADER_LIST = [
 ];
 
 const Header = (props) => {
-  const { getMovies, setMovieType, page, totalPages, setResponsePageNumber, searchQuery, searchResult } = props;
+  const {
+    getMovies,
+    setMovieType,
+    page,
+    totalPages,
+    setResponsePageNumber,
+    searchQuery,
+    searchResult
+  } = props;
   let [navClass, setNavClass] = useState(false);
   let [menuClass, setMenuClass] = useState(false);
   const [type, setType] = useState('now_playing');
@@ -129,5 +143,10 @@ const mapStateToProps = (state) => ({
   totalPages: state.movies.totalPages
 });
 
-export default connect(mapStateToProps,
-  { getMovies, setMovieType, setResponsePageNumber, searchQuery, searchResult })(Header);
+export default connect(mapStateToProps, {
+  getMovies,
+  setMovieType,
+  setResponsePageNumber,
+  searchQuery,
+  searchResult
+})(Header);

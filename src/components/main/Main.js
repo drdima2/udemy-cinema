@@ -8,7 +8,14 @@ import SearchResult from '../content/search-results/SearchResult';
 import { loadMoreMovies, setResponsePageNumber } from '../../redux/actions/movies';
 
 const Main = (props) => {
-  const { loadMoreMovies, page, totalPages, setResponsePageNumber, movieType, searchResult } = props;
+  const {
+    loadMoreMovies,
+    page,
+    totalPages,
+    setResponsePageNumber,
+    movieType,
+    searchResult
+  } = props;
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(page);
   const mainRef = useRef();
@@ -50,13 +57,11 @@ const Main = (props) => {
   return (
     <>
       <div className="main" ref={mainRef} onScroll={handleScroll}>
-        {loading ? (<Spinner />)
-          : (
-            <>
-              {searchResult && searchResult.length === 0 ? <MainContent /> : <SearchResult />}
-            </>
-          )
-        }
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>{searchResult && searchResult.length === 0 ? <MainContent /> : <SearchResult />}</>
+        )}
         <div ref={bottomLineRef}></div>
       </div>
     </>
