@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { PropTypes } from 'prop-types';
+import React from 'react';
 
 import './Details.scss';
 
@@ -17,12 +16,17 @@ const Details = (props) => {
       <div className="movie-container">
         <div
           className="movie-bg"
-          style={{ backgroundImage: `url(https://www.pexels.com/assets/pexels-stock-photos-6c3d5eb0cbed47e1bdf44ff85ebd9cd4669f50b895b3c6e76a23a4fd43852099.jpg)` }}
-        ></div>
+          style={{
+            backgroundImage:
+              'url(https://www.pexels.com/assets/pexels-stock-photos-6c3d5eb0cbed47e1bdf44ff85ebd9cd4669f50b895b3c6e76a23a4fd43852099.jpg)'
+          }}></div>
         <div className="movie-overlay"></div>
         <div className="movie-details">
           <div className="movie-image">
-            <img src="https://www.pexels.com/assets/pexels-stock-photos-6c3d5eb0cbed47e1bdf44ff85ebd9cd4669f50b895b3c6e76a23a4fd43852099.jpg" alt="" />
+            <img
+              src="https://www.pexels.com/assets/pexels-stock-photos-6c3d5eb0cbed47e1bdf44ff85ebd9cd4669f50b895b3c6e76a23a4fd43852099.jpg"
+              alt=""
+            />
           </div>
           <div className="movie-body">
             <div className="movie-overview">
@@ -63,14 +67,8 @@ const Details = (props) => {
   );
 };
 
-Details.propTypes = {
+Details.propTypes = {};
 
-};
+const mapStateToProps = (state) => ({});
 
-const mapStateToProps = (state) => ({
-
-});
-
-export default connect(mapStateToProps, {
-
-})(Details);
+export default connect(mapStateToProps, {})(Details);

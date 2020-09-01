@@ -31,8 +31,7 @@ const Media = () => {
               style={{
                 backgroundImage:
                   'url(https://images.pexels.com/photos/688574/pexels-photo-688574.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500)'
-              }}
-            ></div>
+              }}></div>
           </div>
         </div>
       </div>

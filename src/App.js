@@ -12,7 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Header/>
+        <Header />
         <div className="app">
           <Switch>
             <Route exact path="/" component={Main} />

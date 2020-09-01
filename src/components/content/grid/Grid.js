@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
-import { Link } from  'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Grid.scss';
 import Rating from '../rating/Rating';

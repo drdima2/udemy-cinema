@@ -40,7 +40,9 @@ const SearchResult = (props) => {
                 alt="placeholder">
                 <div className="grid-read-more">
                   <button className="grid-cell-button">
-                    <Link to={`/${data.id}/${formatMovieTitle(data.title)}/details`}>Read More</Link>
+                    <Link to={`/${data.id}/${formatMovieTitle(data.title)}/details`}>
+                      Read More
+                    </Link>
                   </button>
                 </div>
                 <div className="grid-detail">

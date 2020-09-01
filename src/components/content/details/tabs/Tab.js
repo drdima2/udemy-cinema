@@ -34,10 +34,6 @@ Tab.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({});
 
-});
-
-export default connect(mapStateToProps, {
-
-})(Tab);
+export default connect(mapStateToProps, {})(Tab);
