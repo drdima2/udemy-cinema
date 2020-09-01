@@ -101,25 +101,24 @@ jobs:
   deploy-to-heroku:
     docker:
       - image: circleci/node:13.12.0
-      working_directory: ~/repo
-      steps:
-        - checkout
-        - run:
-            name: Show current branch
-            command: echo ${CIRCLE_BRANCH}
-        - run:
-            name: Deploy to Heroku
-            command: |
-              if [ "${CIRCLE_BRANCH}" == "master" ]
-              then
-                git push https://heroku:$HEROKU_API_KEY@git.heroku.com/drdima2-cinema-app-production.git ${CIRCLE_BRANCH}:master -f
-              elif [ "${CIRCLE_BRANCH}" == "staging" ]
-              then
-                git push https://heroku:$HEROKU_API_KEY@git.heroku.com/drdima2-cinema-app-staging.git ${CIRCLE_BRANCH}:master -f
-              else
-                git push https://heroku:$HEROKU_API_KEY@git.heroku.com/drdima2-cinema-app-dev.git ${CIRCLE_BRANCH}:master -f
-              fi
-
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Deploy to Heroku
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]
+            then
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/drdima2-cinema-app-production.git ${CIRCLE_BRANCH}:master -f
+            elif [ "${CIRCLE_BRANCH}" == "staging" ]
+            then
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/drdima2-cinema-app-staging.git ${CIRCLE_BRANCH}:master -f
+            else
+              git push https://heroku:$HEROKU_API_KEY@git.heroku.com/drdima2-cinema-app-dev.git ${CIRCLE_BRANCH}:master -f
+            fi
 
   deploy-to-aws-s3:
     executor: app-executor
