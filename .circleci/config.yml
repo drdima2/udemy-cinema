@@ -194,14 +194,14 @@ workflows:
                 - master
 
       - deploy-to-heroku:
-          - requires:
-              - build
-          filters:
-            branches:
-              only:
-                - develop
-                - staging
-                - master
+        - requires:
+          - build
+        filters:
+          branches:
+            only:
+              - develop
+              - staging
+              - master
 
 
       - deploy-to-aws-s3:
