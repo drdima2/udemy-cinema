@@ -196,6 +196,8 @@ workflows:
       - deploy-to-heroku:
           requires:
             - build
+            - prettier
+            - linting
           filters:
             branches:
               only:
