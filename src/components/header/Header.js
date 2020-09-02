@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 import './Header.scss';
 import logo from '../../assets/cinema-logo.svg';
+// import { MOVIE_API_URL } from '../../services/movies.service';
+
+import {
+  getMovies,
+  setMovieType,
+  setResponsePageNumber,
+  searchQuery,
+  searchResult
+} from '../../redux/actions/movies';
 
 const HEADER_LIST = [
   {
@@ -30,9 +42,44 @@ const HEADER_LIST = [
   }
 ];
 
-const Header = () => {
+const Header = (props) => {
+  const {
+    getMovies,
+    setMovieType,
+    page,
+    totalPages,
+    setResponsePageNumber,
+    searchQuery,
+    searchResult
+  } = props;
   let [navClass, setNavClass] = useState(false);
   let [menuClass, setMenuClass] = useState(false);
+  const [type, setType] = useState('now_playing');
+  const [search, setSearch] = useState('');
+
+  const history = useHistory();
+
+  useEffect(() => {
+    getMovies(type, page);
+    setResponsePageNumber(page, totalPages);
+
+    // eslint-disable-next-line
+  }, [type]);
+
+  const setMovieTypeUrl = (type) => {
+    setType(type);
+    setMovieType(type);
+  };
+
+  const onSearchChange = (e) => {
+    setSearch(e.target.value);
+    searchQuery(e.target.value);
+    searchResult(e.target.value);
+  };
+
+  const navigateToMainPage = () => {
+    history.push('/');
+  };
 
   const toggleMenu = () => {
     menuClass = !menuClass;
@@ -51,7 +98,7 @@ const Header = () => {
       <div className="header-nav-wrapper">
         <div className="header-bar"></div>
         <div className="header-navbar">
-          <div className="header-image">
+          <div className="header-image" onClick={() => navigateToMainPage()}>
             <img src={logo} alt="" />
           </div>
           <div
@@ -64,7 +111,10 @@ const Header = () => {
           </div>
           <ul className={`${navClass ? 'header-nav header-mobile-nav' : 'header-nav'}`}>
             {HEADER_LIST.map((data) => (
-              <li key={data.id} className="header-nav-item">
+              <li
+                key={data.id}
+                className={data.type === type ? 'header-nav-item active-item' : 'header-nav-item'}
+                onClick={() => setMovieTypeUrl(data.type)}>
                 <span className="header-list-name">
                   <i className={data.iconClass}></i>
                 </span>
@@ -72,9 +122,13 @@ const Header = () => {
                 <span className="header-list-name">{data.name}</span>
               </li>
             ))}
-
-            <li className="header-nav-item">New Movies</li>
-            <input className="search-input" type="text" placeholder="Search for a movie" />
+            <input
+              className="search-input"
+              type="text"
+              placeholder="Search for a movie"
+              value={search}
+              onChange={onSearchChange}
+            />
           </ul>
         </div>
       </div>
@@ -82,4 +136,25 @@ const Header = () => {
   );
 };
 
-export default Header;
+Header.propTypes = {
+  getMovies: PropTypes.func,
+  setMovieType: PropTypes.func,
+  searchQuery: PropTypes.func,
+  searchResult: PropTypes.func,
+  setResponsePageNumber: PropTypes.func,
+  page: PropTypes.number,
+  totalPages: PropTypes.number
+};
+
+const mapStateToProps = (state) => ({
+  page: state.movies.page,
+  totalPages: state.movies.totalPages
+});
+
+export default connect(mapStateToProps, {
+  getMovies,
+  setMovieType,
+  setResponsePageNumber,
+  searchQuery,
+  searchResult
+})(Header);
