@@ -63,21 +63,16 @@ const Header = (props) => {
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(
-    () => {
-      getMovies(type, page);
-      setResponsePageNumber(page, totalPages);
+  useEffect(() => {
+    getMovies(type, page);
+    setResponsePageNumber(page, totalPages);
 
-      if (location.pathname !== '/' && location.key) {
-        setDisableSearch(true);
-      }
+    if (location.pathname !== '/' && location.key) {
+      setDisableSearch(true);
+    }
 
-      // eslint-disable-next-line
-    },
-    [type],
-    setDisableSearch,
-    location
-  );
+    // eslint-disable-next-line
+  }, [type, setDisableSearch, location, getMovies, page, totalPages, setResponsePageNumber]);
 
   const setMovieTypeUrl = (type) => {
     setDisableSearch(false);
