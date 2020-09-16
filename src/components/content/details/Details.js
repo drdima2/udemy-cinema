@@ -27,22 +27,17 @@ const Details = (props) => {
   }, [id, movie]);
   return (
     <>
-      {
-        details &&
+      {details && (
         <div className="movie-container">
           <div
             className="movie-bg"
             style={{
-              backgroundImage:
-                `url(${IMAGE_URL}/${details.backdrop_path})`
+              backgroundImage: `url(${IMAGE_URL}/${details.backdrop_path})`
             }}></div>
           <div className="movie-overlay"></div>
           <div className="movie-details">
             <div className="movie-image">
-              <img
-                src={`${IMAGE_URL}/${details.poster_path}`}
-                alt=""
-              />
+              <img src={`${IMAGE_URL}/${details.poster_path}`} alt="" />
             </div>
             <div className="movie-body">
               <div className="movie-overview">
@@ -51,37 +46,35 @@ const Details = (props) => {
                 </div>
                 <div className="movie-genres">
                   <ul className="genres">
-                    {
-                      details.genres.map((genre) =>
-                        <li key={genre.id}>{genre.name}</li>
-                      )
-                    }
+                    {details.genres.map((genre) => (
+                      <li key={genre.id}>{genre.name}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="rating">
-                  <Rating className="rating-stars" rating={details.vote_average} totalStars={10}/>
+                  <Rating className="rating-stars" rating={details.vote_average} totalStars={10} />
                   &nbsp;
                   <span>{details.vote_average}</span> <p>({details.vote_count}) reviews</p>
                 </div>
                 <Tabs>
                   <div label="Overview">
-                    <Overview/>
+                    <Overview />
                   </div>
                   <div label="Crew">
-                    <Crew/>
+                    <Crew />
                   </div>
                   <div label="Media">
-                    <Media/>
+                    <Media />
                   </div>
                   <div label="Reviews">
-                    <Reviews/>
+                    <Reviews />
                   </div>
                 </Tabs>
               </div>
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 };
@@ -95,6 +88,4 @@ const mapStateToProps = (state) => ({
   movie: state.movies.movie
 });
 
-export default connect(
-  mapStateToProps,
-  { movieDetails })(Details);
+export default connect(mapStateToProps, { movieDetails })(Details);

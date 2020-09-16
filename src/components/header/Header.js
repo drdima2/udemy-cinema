@@ -12,7 +12,8 @@ import {
   setMovieType,
   setResponsePageNumber,
   searchQuery,
-  searchResult, clearMovieDetails
+  searchResult,
+  clearMovieDetails
 } from '../../redux/actions/movies';
 
 const HEADER_LIST = [
@@ -62,16 +63,21 @@ const Header = (props) => {
   const history = useHistory();
   const location = useLocation();
 
-  useEffect(() => {
-    getMovies(type, page);
-    setResponsePageNumber(page, totalPages);
+  useEffect(
+    () => {
+      getMovies(type, page);
+      setResponsePageNumber(page, totalPages);
 
-    if (location.pathname !== '/' && location.key) {
-      setDisableSearch(true);
-    }
+      if (location.pathname !== '/' && location.key) {
+        setDisableSearch(true);
+      }
 
-    // eslint-disable-next-line
-  }, [type], setDisableSearch, location);
+      // eslint-disable-next-line
+    },
+    [type],
+    setDisableSearch,
+    location
+  );
 
   const setMovieTypeUrl = (type) => {
     setDisableSearch(false);

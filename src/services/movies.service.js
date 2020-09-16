@@ -20,9 +20,7 @@ export const SEARCH_API_URL = async (query) => {
 };
 
 export const MOVIE_DETAILS_URL = async (id) => {
-  const response = await axios.get(
-    `${REQUEST_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`
-  );
+  const response = await axios.get(`${REQUEST_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`);
   return response;
 };
 
