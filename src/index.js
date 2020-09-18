@@ -16,9 +16,7 @@ if (process.env.NODE_ENV === 'production') {
     beforeBreadcrumb(breadcrumb, hint) {
       return breadcrumb.category === 'ui.click' ? null : breadcrumb;
     },
-    integrations: [
-      new Integrations.BrowserTracing()
-    ],
+    integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 1.0
   });
 }

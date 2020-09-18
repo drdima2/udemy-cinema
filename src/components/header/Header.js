@@ -78,8 +78,13 @@ const Header = (props) => {
     if (routesArray.length > 0) {
       if (!path && !url) {
         pathURL('/', '/');
-        const error = new Error(`Page with pathname ${location.pathname} not found with status code 404`);
-        setError({ message: `Page with pathname ${location.pathname} not found with status code 404`, statusCode: 404 });
+        const error = new Error(
+          `Page with pathname ${location.pathname} not found with status code 404`
+        );
+        setError({
+          message: `Page with pathname ${location.pathname} not found with status code 404`,
+          statusCode: 404
+        });
         throw error;
       }
     }
