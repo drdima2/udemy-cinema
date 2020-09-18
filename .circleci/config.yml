@@ -120,7 +120,7 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-            npm install
+            npm install --save
             if [ "${CIRCLE_BRANCH}" == "master" ]
             then
               git push https://heroku:$HEROKU_API_KEY@git.heroku.com/drdima2-cinema-app-production.git ${CIRCLE_BRANCH}:master -f
