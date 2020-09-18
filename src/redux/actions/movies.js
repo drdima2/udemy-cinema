@@ -27,7 +27,11 @@ export const getMovies = (type, pageNumber) => async (dispatch) => {
     dispatchMethod(RESPONSE_PAGE, payload, dispatch);
   } catch (error) {
     if (error.response) {
-      dispatchMethod(SET_ERROR, error.response.data.message, dispatch);
+      const payload = {
+        message: error.response.data.message || error.response.data.status_message,
+        statusCode: error.response.status
+      };
+      dispatchMethod(SET_ERROR, payload, dispatch);
     }
   }
 };
@@ -43,7 +47,11 @@ export const loadMoreMovies = (type, pageNumber) => async (dispatch) => {
     );
   } catch (error) {
     if (error.response) {
-      dispatchMethod(SET_ERROR, error.response.data.message, dispatch);
+      const payload = {
+        message: error.response.data.message || error.response.data.status_message,
+        statusCode: error.response.status
+      };
+      dispatchMethod(SET_ERROR, payload, dispatch);
     }
   }
 };
@@ -60,7 +68,11 @@ export const searchResult = (query) => async (dispatch) => {
     // dispatchMethod(MOVIE_TYPE, type, dispatch);
   } catch (error) {
     if (error.response) {
-      dispatchMethod(SET_ERROR, error.response.data.message, dispatch);
+      const payload = {
+        message: error.response.data.message || error.response.data.status_message,
+        statusCode: error.response.status
+      };
+      dispatchMethod(SET_ERROR, payload, dispatch);
     }
   }
 };
