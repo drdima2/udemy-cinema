@@ -114,6 +114,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - *build-project
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
