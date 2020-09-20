@@ -30,6 +30,12 @@ executors:
     docker:
       - image: 'cibuilds/base:latest'
     resource_class: small
+  docker-publisher:
+    environment:
+      IMAGE_NAME: drdima2/cinemadb
+    docker:
+      - image: circleci/buildpack-deps:strech
+
 
 aliases:
   - &show-current-branch-name
@@ -107,6 +113,27 @@ jobs:
       - run:
           name: Run unit test
           command: npm run test
+
+  publish-to-docker-hub:
+    executor: docker-publisher
+    steps:
+      - checkout
+      - setup_remote_docker
+      - *restore-cache
+      - run: docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"
+      - run: docker build -t ${IMAGE_NAME}:latest .
+      - run:
+          name: Tag and push to docker hub
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]
+            then
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:stable-{CIRBLE_BUILD_NUM} && docker push ${IMAGE_NAME}:stable-{CIRBLE_BUILD_NUM}
+            elif [ "${CIRCLE_BRANCH}" == "staging" ]
+            then
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:staging-{CIRBLE_BUILD_NUM} && docker push ${IMAGE_NAME}:stagin-{CIRBLE_BUILD_NUM}
+            else
+              docker tag ${IMAGE_NAME}:latest ${IMAGE_NAME}:dev-{CIRBLE_BUILD_NUM} && docker push ${IMAGE_NAME}:dev-{CIRBLE_BUILD_NUM}
+            fi
 
   deploy-to-heroku:
     docker:
@@ -213,6 +240,15 @@ workflows:
                 - develop
                 - staging
                 - master
+      - publish-to-docker-hub:
+          requires:
+            - unit-test
+          filters:
+            branches:
+              only:
+                - develop
+                - staging
+                - master
       - deploy-to-heroku:
           requires:
             - unit-test
@@ -224,7 +260,7 @@ workflows:
                 - master
       - deploy-to-aws-s3:
           requires:
-            - unit-test
+            - publish-to-docker-hub
           filters:
             branches:
               only:
