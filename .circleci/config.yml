@@ -34,7 +34,7 @@ executors:
     environment:
       IMAGE_NAME: drdima2/cinemadb
     docker:
-      - image: circleci/buildpack-deps:strech
+      - image: circleci/buildpack-deps:stretch
 
 
 aliases:
