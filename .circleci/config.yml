@@ -118,7 +118,7 @@ jobs:
     executor: docker-publisher
     steps:
       - checkout
-      - setup_remote_docker:
+      - setup_remote_docker
       - *restore-cache
       - run: docker login -u "${DOCKER_HUB_USER}" -p "${DOCKER_HUB_PASSWORD}"
       - run: docker build -t ${IMAGE_NAME}:latest .
